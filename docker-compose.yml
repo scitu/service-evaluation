@@ -5,7 +5,7 @@ services:
     image: postgres:alpine
     container_name: analytics-db
     volumes:
-    - - /home/kubelab/data/analytics_data:/var/lib/postgresql/data
+    - /home/kubelab/data/analytics_data:/var/lib/postgresql/data
     env_file:
     - env/.env.production
     networks:
