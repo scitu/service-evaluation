@@ -18,7 +18,7 @@ services:
     image: nginx:alpine
     container_name: analytics-nginx
     volumes:
-    - ./src/static:/usr/share/nginx/html/static
+    - ./service_evaluation/static:/usr/share/nginx/html/static
     networks:
     - internal
     - proxy
