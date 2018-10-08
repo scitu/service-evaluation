@@ -5,10 +5,10 @@ User = get_user_model()
 
 class AccessCount(models.Model):
     url = models.URLField()
-    protocol = models.TextField()
-    path = models.TextField()
-    host = models.TextField()
-    os = models.TextField()
+    protocol = models.CharField(max_length=16)
+    path = models.CharField(max_length=2000)
+    host = models.CharField(max_length=256)
+    os = models.CharField(max_length=16)
     ip = models.GenericIPAddressField(null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     
