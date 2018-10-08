@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres:10.5
+    volumes:
+      - ./postgres/initdb:/docker-entrypoint-initdb.d
+    env_file:
+      - env/.env.production
+
+  web:
+    build: ./service_evaluation
+    env_file:
+      - env/.env.production
+    ports:
+      - 8000:8000
+    volumes:
+      - ./service_evaluation:/web
+      - ./volume/var/www/:/var/www/
+    depends_on:
+      - postgres
+    command: "sh run.sh"
