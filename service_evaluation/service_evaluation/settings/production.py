@@ -3,7 +3,7 @@ from service_evaluation.settings.base import *
 
 
 DEBUG = False
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1' ,'analytics.service.sci.tu.ac.th']
 
 DATABASES = {
     'default': {
@@ -15,5 +15,5 @@ DATABASES = {
     }
 }
 
-MEDIA_ROOT = os.environ.get('MEDIA_ROOT', os.path.join('/', 'var', 'www', 'scieval', 'media'))
-STATIC_ROOT = os.environ.get('STATIC_ROOT', os.path.join('/', 'var', 'www', 'scieval', 'static'))
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'media'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'static'))

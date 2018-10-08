@@ -1,0 +1,60 @@
+version: '2'
+
+services:
+  analytics-db:
+    image: postgres:alpine
+    container_name: analytics-db
+    volumes:
+    - - /home/kubelab/data/analytics_data:/var/lib/postgresql/data
+    env_file:
+    - env/.env.production
+    networks:
+    - internal
+    labels:
+    - traefik.enable=false
+    restart: always
+
+  analytics-nginx:
+    image: nginx:alpine
+    container_name: analytics-nginx
+    volumes:
+    - ./src/static:/usr/share/nginx/html/static
+    networks:
+    - internal
+    - proxy
+    labels:
+    - traefik.backend=analytics-nginx
+    - traefik.docker.network=proxy
+    - traefik.enable=true
+    - traefik.frontend.rule=Host:analytics.service.sci.tu.ac.th;PathPrefix:/static/
+    - traefik.port=80
+    depends_on:
+    - analytics-web
+    restart: always
+
+  analytics-web:
+    build: ./service_evaluation
+    command: sh /web/production.sh
+    container_name: analytics-web
+    depends_on:
+    - analytics-db
+    env_file:
+    - env/.env.production
+    labels:
+    - traefik.backend=analytics-web
+    - traefik.docker.network=proxy
+    - traefik.frontend.rule=Host:analytics.service.sci.tu.ac.th;PathPrefix:/
+    - traefik.port=8000
+    networks:
+    - internal
+    - proxy
+    restart: always
+    volumes:
+    - ./service_evaluation:/web
+
+networks:
+  internal:
+    external: false
+  proxy:
+    external: true
+
