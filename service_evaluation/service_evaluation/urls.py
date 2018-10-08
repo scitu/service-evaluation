@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include, reverse
 from django.contrib.auth.views import logout_then_login
 from app.views import evaluation, evaluation_with_service, index
+from app.router import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +25,6 @@ urlpatterns = [
     path('logout/', logout_then_login, name="logout"),
     path('eval/<slug:service>', evaluation_with_service, name="evaluation-with-service"),
     path('eval/', evaluation, name="evaluation"),
-    path('oauth/', include('social_django.urls', namespace='social')), # in django2
+    path('oauth/', include('social_django.urls', namespace='social')),
+    path('api/', include(router.urls)),
 ]

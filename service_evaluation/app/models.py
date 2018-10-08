@@ -3,6 +3,15 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+class AccessCount(models.Model):
+    url = models.URLField()
+    protocol = models.TextField()
+    path = models.TextField()
+    host = models.TextField()
+    os = models.TextField()
+    ip = models.GenericIPAddressField(null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
 class Evaluation(models.Model):
     SCORE_ONE = 1
     SCORE_TWO = 2
@@ -30,5 +39,5 @@ class Evaluation(models.Model):
     correctness_score = models.IntegerField(choices=EVAL_CHOICES)
     comment = models.TextField(null=True, blank=True)
 
-    class Meta:
-        unique_together = ('user', 'service')
+    # class Meta:
+    #     unique_together = ('user', 'service')

@@ -2,7 +2,12 @@ from django import forms
 from app.fields import ListTextWidget
 from app.models import Evaluation
 
-AVAILABLE_SERVICE = ['ระบบแจ้งซ่อม', 'ระบบฐานข้อมูลวิจัย']
+AVAILABLE_SERVICE = [
+    'needtofix', 
+    'research',
+    'exam',
+    'peoplefinder',
+]
 
 class EvaluationForm(forms.ModelForm):
     performance_score = forms.ChoiceField(
@@ -20,7 +25,10 @@ class EvaluationForm(forms.ModelForm):
         label=Evaluation.CORRECTNESS_LABEL,
         widget=forms.RadioSelect())
 
-    comment = forms.CharField(label=Evaluation.COMMENT_LABEL, widget=forms.Textarea())
+    comment = forms.CharField(label=Evaluation.COMMENT_LABEL, 
+        widget=forms.Textarea(), 
+        required=False)
+
     class Meta:
         model = Evaluation
         fields = ( 
@@ -49,7 +57,8 @@ class EvaluationWithServiceForm(forms.ModelForm):
 
     comment = forms.CharField(
         label=Evaluation.COMMENT_LABEL,
-        widget=forms.Textarea())
+        widget=forms.Textarea(),
+        required=False)
 
     class Meta:
         model = Evaluation

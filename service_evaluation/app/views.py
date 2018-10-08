@@ -35,11 +35,11 @@ def evaluation_with_service(request, service):
             evaluation.save()
             is_complete = True
     else: 
-        prev_eval = Evaluation.objects.filter(user=request.user, service=service)
-        if prev_eval.exists():
-            is_complete = True
-        else:
-            form = EvaluationForm()
+        # prev_eval = Evaluation.objects.filter(user=request.user, service=service)
+        # if prev_eval.exists():
+        #     is_complete = True
+        # else:
+        form = EvaluationForm()
 
     if is_complete:
         return render(request, 'complete.html', {'user': request.user, 'service': service} )
