@@ -33,6 +33,5 @@ window.onload = () => {
   let xhr = new XMLHttpRequest();
   xhr.open("POST", API_URL);
   xhr.setRequestHeader("content-type", "application/json");
-  xhr.setRequestHeader("cache-control", "no-cache");
   xhr.send(payload);
 }
