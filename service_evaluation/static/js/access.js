@@ -1,10 +1,10 @@
 function getOS() {
-  let userAgent = window.navigator.userAgent,
-      platform = window.navigator.platform,
-      macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-      windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-      iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-      os = null;
+  let userAgent = window.navigator.userAgent;
+  let platform = window.navigator.platform;
+  let macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
+  let windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'];
+  let iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+  let os = null;
 
   if (macosPlatforms.indexOf(platform) !== -1) {
     os = 'Mac OS';
@@ -21,7 +21,7 @@ function getOS() {
 }
 
 window.onload = () => {
-  const API_URL = 'analytics.sci.tu.ac.th/api/count/'
+  const API_URL = 'http://analytics.sci.tu.ac.th/api/count/'
   let payload = JSON.stringify({
     url: window.location.href,
     host: window.location.hostname,
