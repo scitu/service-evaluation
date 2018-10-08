@@ -21,7 +21,7 @@ function getOS() {
 }
 
 window.onload = () => {
-  const API_URL = 'http://analytics.sci.tu.ac.th/api/count/'
+  const API_URL = 'https://analytics.service.sci.tu.ac.th/api/count/'
   let payload = JSON.stringify({
     url: window.location.href,
     host: window.location.hostname,
