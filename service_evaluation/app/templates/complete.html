@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+  <style>
+    .content {
+      padding: 20px;
+    };
+  </style>
+  <div class="content">
+    <p> คุณ {{user}} ได้ทำการประเมินระบบ {{service}} เรียบร้อยแล้ว</p>
+  </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+  <style>
+    .content {
+      padding: 20px;
+    };
+  </style>
+  <div class="content">
+    <p> ยินดีต้อนรับสู่ระบบประเมินเว็ปแอพพลิเคชั่นคณะวิทยาศาสตร์ มหาวิทยาลัยธรรมศาสตร์ </p>
+    <a href="{% url 'evaluation' %}"> กดที่นี่เพื่อเริ่มระเมิน </a>
+  </div>
+{% endblock %}
