@@ -25,10 +25,11 @@ __PACKS = [
 
 protocol = 'http:'
 ip = '127.0.0.1'
-os = ['Window', 'Linux', 'Android', 'Mac OS']
+os = ['Window', 'Window', 'Window', 'Window', 'Linux', 'Android', 'Android', 'Mac OS', 'Mac OS', 'Mac OS']
 
+AccessCount.objects.all().delete()
 with transaction.atomic():
-    for i in range(10):
+    for i in range(8416):
         pack = {
             **choice(__PACKS),
             'protocol': protocol,
@@ -36,5 +37,9 @@ with transaction.atomic():
             'os': choice(os),
         }
         inst = AccessCount.objects.create(**pack)
+        timeinst = tz.now() + timedelta(hours=randint(-(24*30*1), 0))
+        while timeinst.hour > 17 and timeinst.hour < 8:
+            timeinst = tz.now() + timedelta(hours=randint(-(24*30*1), 0))
         inst.timestamp = tz.now() + timedelta(hours=randint(-(24*30*1), 0))
         inst.save()
+        print(timeinst)
