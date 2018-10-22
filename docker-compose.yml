@@ -27,7 +27,7 @@ services:
     - traefik.backend=analytics-nginx
     - traefik.docker.network=proxy
     - traefik.enable=true
-    - traefik.frontend.rule=Host:analytics.service.sci.tu.ac.th;PathPrefix:/static/
+    - traefik.frontend.rule=Host:evaluation.service.sci.tu.ac.th;PathPrefix:/static/
     - traefik.port=80
     depends_on:
     - analytics-web
@@ -44,7 +44,7 @@ services:
     labels:
     - traefik.backend=analytics-web
     - traefik.docker.network=proxy
-    - traefik.frontend.rule=Host:analytics.service.sci.tu.ac.th;PathPrefix:/
+    - traefik.frontend.rule=Host:evaluation.service.sci.tu.ac.th;PathPrefix:/
     - traefik.port=8000
     networks:
     - internal
