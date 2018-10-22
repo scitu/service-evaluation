@@ -3,7 +3,7 @@ from service_evaluation.settings.base import *
 
 
 DEBUG = False
-ALLOWED_HOSTS = ['localhost', '127.0.0.1' ,'analytics.service.sci.tu.ac.th']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1' ,'analytics.service.sci.tu.ac.th', '*']
 
 DATABASES = {
     'default': {
